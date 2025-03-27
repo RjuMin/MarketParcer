@@ -43,3 +43,21 @@ class ProductController extends Controller
         ], 404);
     }
 }
+
+//После получения API ключа через Яндекс.Разработчика следует модифицировать функцию:
+/*public function getRealProduct($product_id)
+{
+    $apiKey = env('YANDEX_MARKET_API_KEY');
+    $response = Http::withHeaders([
+        'Authorization' => 'Bearer ' . $apiKey
+    ])->get("https://api.market.yandex.ru/v1/products/{$product_id}");
+
+    if ($response->successful()) {
+        return $response->json();
+    }
+
+    return response()->json([
+        'error' => 'Failed to fetch product',
+        'details' => $response->json()
+    ], $response->status());
+}*/
