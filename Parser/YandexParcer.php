@@ -58,12 +58,12 @@ class YandexMarketParser
     private function extractPrice(Crawler $crawler): ?float
     {
         try {
-            $priceText = $crawler->filter('[data-auto="mainPrice"] span')->first()->text();
-            return (float)preg_replace('/[^0-9]/', '', $priceText);
+            $priceText = $crawler->filter('[data-zone-name="price"] meta[itemprop="price"]')->attr('content');
+            return (float)$priceText;
         } catch (\Exception $e) {
             return null;
         }
-    }
+    
 
     private function extractName(Crawler $crawler): ?string
     {
